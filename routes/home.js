@@ -86,7 +86,7 @@ router.get('/', (req, res) => {
             </div>
             
             <div class="form-half1">
-            <center><p style="color: #da1d1d; position: relative; top: 20px;"> Something went wrong. Try again </p></center>
+            <center><p style="color: #da1d1d; position: relative; top: 20px;"> Your session has expired. Please try again </p></center>
 
             <br> <br>
                 <div class="passdiv">
