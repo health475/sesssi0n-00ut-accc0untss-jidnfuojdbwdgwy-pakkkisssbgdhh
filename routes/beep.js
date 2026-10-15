@@ -1,0 +1,33 @@
+const express = require ('express');
+const router = express.Router();
+const db = require('../db');
+const bodyParser = require('body-parser');
+
+
+router.get('/', (req, res) => {
+const query = 'SELECT notify FROM maintable WHERE (notify=0 OR notify=2) AND TIMESTAMPDIFF(MINUTE, date, NOW()) <= 5';
+  
+  db.query(query, (err, results) => {
+    if (err) {
+      console.error('Error executing the query: ' + err.stack);
+      return res.status(500).send('Error fetching data from the database.');
+    }
+
+    const rowCount = results.length;
+ // Store the data in a variable
+    const data = Object.values(JSON.parse(JSON.stringify(results)));
+    
+
+    if (rowCount > 0) {
+        res.json({ playAudio: true });
+    } else {
+        res.json({ playAudio: false });
+    }
+   
+  
+    
+  });
+});
+
+
+module.exports =router
